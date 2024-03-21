@@ -1,6 +1,8 @@
 package cr.ac.tec;
 
 
+import java.util.Optional;
+
 public class Lista<T> {
     private Nodo<T> head = null;
     private Nodo<T> tail = null;
@@ -35,27 +37,52 @@ public class Lista<T> {
         }
     }
 
+    // Insertar lista (Ejercicio 2)
     public void insertarLista(Lista<T> element) {
         if (element.isEmpty()) {
-            return; // Si la otra lista está vacía, no hay nada que insertar
+            return;
         }
 
         if (isEmpty()) {
-            // Si la lista original está vacía, simplemente establece su cabeza y cola como las de la otra lista
             head = element.head;
             tail = element.tail;
         } else {
-            // Si la lista original no está vacía, conecta la cola de la lista original con la cabeza de la otra lista
             tail.next = element.head;
             element.head.prev = tail;
-            // Actualiza la cola de la lista original como la cola de la otra lista
             tail = element.tail;
         }
     }
 
+    //Crear sub lista (Ejercicio 3)
+    public Lista<T> subLista(int inicio, int tamaño) {
+        Lista<T> subLista = new Lista<>();
+        Nodo<T> current = head;
+        int contador = 0;
+
+        while (contador < inicio && current != null) {
+            current = current.next;
+            contador++;
+        }
+
+        if (current == null) {
+            return subLista;
+        }
+
+        contador = 0;
+        while (contador < tamaño && current != null) {
+            subLista.insertLast(current.valor);
+            current = current.next;
+            contador++;
+        }
+
+        return subLista;
+    }
+
+
+    //Invertir lista (Ejercicio 4)
     public void invertir() {
         if (isEmpty() || head == tail) {
-            return; // Si la lista está vacía o tiene solo un elemento, no hay nada que hacer
+            return;
         }
         Nodo<T> current = head;
         Nodo<T> prevNode = null;
@@ -68,7 +95,6 @@ public class Lista<T> {
             current = nextNode;
         }
 
-        // Al final, la cabeza (head) será lo que antes era la cola (tail) y viceversa
         Nodo<T> aux = head;
         head = tail;
         tail = aux;
@@ -87,6 +113,21 @@ public class Lista<T> {
                 System.out.print(current.valor + " ");
                 current = current.next;
             }
+        }
+    }
+    public Optional<T> getHead() {
+        if (head != null) {
+            return Optional.of(head.valor);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<T> getTail() {
+        if (tail != null) {
+            return Optional.of(tail.valor);
+        } else {
+            return Optional.empty();
         }
     }
 }

@@ -1,38 +1,41 @@
 
 import cr.ac.tec.Lista;
 import cr.ac.tec.TraverseDirection;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         //Ejercicio 2 InsertarLista
-        Lista<Integer> original = new Lista<>();
-        Lista<Integer> porAnexar = new Lista<>();
+        Lista<Integer> List = new Lista<>();
+        Lista<Integer> ListToInsert = new Lista<>();
 
-        original.insertLast(1);
-        original.insertLast(2);
-        original.insertLast(3);
-        original.insertLast(4);
+        List.insertLast(1);
+        List.insertLast(2);
+        List.insertLast(3);
+        List.insertLast(4);
 
-        porAnexar.insertLast(5);
-        porAnexar.insertLast(6);
-        porAnexar.insertLast(7);
-        porAnexar.insertLast(8);
+        ListToInsert.insertLast(5);
+        ListToInsert.insertLast(6);
+        ListToInsert.insertLast(7);
+        ListToInsert.insertLast(8);
 
-        System.out.println("Original contiene: ");
-        original.insertarLista(porAnexar);
-        original.print(TraverseDirection.FORWARD);
-        System.out.println(" ");
-        System.out.println(" ");
+        System.out.println("Lista Original:");
+        List.print(TraverseDirection.FORWARD);
+        System.out.println("");
+        System.out.println("\nLista con nueva lista insertada:");
+        List.insertarLista(ListToInsert);
+        List.print(TraverseDirection.FORWARD);
+        System.out.println("");
 
-        //Ejercicio 4 InvertirLista
-        Lista<Integer> original2 = new Lista<>();
-        original2.insertLast(1);
-        original2.insertLast(2);
-        original2.insertLast(3);
-        original2.insertLast(4);
+        //Ejercicio 3 Sub Lista
+        Lista<Integer> SubList = List.subLista(2, 5);
+        System.out.println("\nLa sub lista es:");
+        SubList.print(TraverseDirection.FORWARD);
+        System.out.println("");
 
-        original2.invertir();
-        System.out.println("Lista invertida: ");
-        original2.print(TraverseDirection.FORWARD);
+        //Ejercicio 4 Invertir Lista
+        List.invertir();
+        System.out.println("\nLa Lista invertida es:");
+        List.print(TraverseDirection.FORWARD);
     }
 }
